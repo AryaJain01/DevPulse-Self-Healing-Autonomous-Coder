@@ -1,0 +1,18 @@
+1:- Input: You start at the top, typing a "Goal" (e.g., "Make a web scraper") into the Streamlit UI.
+
+2:- The Architect Writes: The Orchestrator takes your goal and gives it to the Architect Agent. 
+The Architect uses Llama-3 via Groq to write the code and saves it as main.py into your workspace folder.
+
+3:- The Sandbox Runs: This is where Step 1 kicks in. 
+The Docker Sandbox "sees" the new main.py through the magic portal (Volume Binding), spins up a container, and runs the code.
+
+4:- Scenario A: Success! The code runs perfectly. 
+The results ("Hello World!" or your scraped data) are passed directly to the Streamlit UI.
+ The project is finished.
+
+5:- Scenario B: The Self-Healing Loop (The Red Dashed Lines) 
+If the code crashes (e.g., a missing library), the Sandbox captures the red Traceback text.
+ The Orchestrator says, "Wait, we have an error!" and passes that Traceback text to the Debugger Agent.
+
+6:- Scenario B: The Fix: The Debugger analyzes the Traceback and gives explicit instructions to the Architect (e.g., "Add 'import requests'").
+ The Architect goes back to Step 2, rewrites main.py, and the Sandbox runs it again

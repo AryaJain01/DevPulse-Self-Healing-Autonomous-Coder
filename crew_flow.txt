@@ -1,0 +1,32 @@
+To understand crew.py, think of it as the "Project Manager" who sits in a room with a developer, a tester, and a laptop (Docker).
+
+The logic follows a very specific sequence that repeats until the job is done perfectly. Here is the single-step logic broken down:
+
+The Logic Flow: "The AI Relay Race"
+The Brain Scan (Initialization): It calls get_llm() and create_agents(). This is like bringing the two specialists into the room and making sure they are awake and have their Groq "brains" connected.
+
+The Work Order (Task Definition): It calls define_tasks(). Crucially, it hands them the user_goal and any feedback (errors) from previous attempts. This ensures the agents aren't working in the dark.
+
+The Execution (The Kickoff): dev_crew.kickoff() starts the process. The Architect writes the code to workspace/main.py. The Debugger reviews the logic. Once they are done, the AI part of the "step" is finished.
+
+The Reality Check (Sandbox Entry): Now the Manager takes that main.py and hands it to the Sandbox. It says, "I don't care how good the AI says this is; let's see if it actually runs in the real world (Docker)."
+
+The Decision (The Branch):
+
+Success Path: If Docker says "Success," the Manager stops the loop, takes the output, and prepares it for the UI.
+
+Error Path: If Docker crashes, the Manager captures that messy error text, packages it up neatly using format_feedback(), and starts the whole process over for Attempt #2.
+
+The "Why" Behind This Logic
+Most AI apps stop after Step 3. They show you code and hope it works. crew.py is different because it uses the Closed-Loop Feedback System.
+
+
+The Input: Your request.
+
+The Controller: The AI Agents.
+
+The Plant (System): The Docker Sandbox.
+
+The Sensor: The Error Traceback.
+
+By feeding the "Sensor" (the error) back into the "Controller" (the AI), you create a system that learns from its own failure. That is why we call it a "Self-Healing" coder.
