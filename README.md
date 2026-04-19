@@ -1,14 +1,3 @@
----
-title: DevPulse: Self-Healing AI Coder
-emoji: 🤖
-colorFrom: green
-colorTo: emerald
-sdk: streamlit
-sdk_version: "1.41.0"
-app_file: app.py
-pinned: true
----
-
 # 🤖 DevPulse: Self-Healing Autonomous AI Coder
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue)
